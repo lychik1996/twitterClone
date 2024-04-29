@@ -30,7 +30,7 @@ export default function SidebarItem({
         if(auth && !currentUser){
             loginModal.onOpen();
         }else if(href){
-            router.push(href)
+            router.push(href);
         }
        
     },[router, onClick,href, currentUser, auth, loginModal])

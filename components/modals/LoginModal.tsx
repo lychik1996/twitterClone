@@ -4,7 +4,7 @@ import useRegisterModal from "@/hooks/useRegisterModal";
 import { useCallback, useState } from "react";
 import Input from "../Input";
 import Modal from "../Modal";
-import { signIn } from "next-auth/react";
+import { signIn} from "next-auth/react";
 
 export default function LoginModal(){
     const loginModal = useLoginModal();
