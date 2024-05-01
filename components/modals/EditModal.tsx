@@ -66,6 +66,7 @@ export default function EditModal() {
     coverImage,
     editModal,
     mutateFetchedUser,
+    currentUser
   ]);
 
   const bodyContent = (

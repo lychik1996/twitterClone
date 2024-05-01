@@ -39,7 +39,7 @@ export default function Form({ placeholder, isComment, postId }: FormProps) {
     } finally {
       setIsLoading(false);
     }
-  }, [body, mutatePosts, isComment, postId, mutatePost]);
+  }, [body, mutatePosts, isComment, postId, mutatePost, currentUser]);
 
   return (
     <div className="border-b-[1px] border-neutral-800 px-5 py-2">
