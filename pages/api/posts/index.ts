@@ -12,7 +12,6 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse){
         const{body} = req.body;
         const {currentUser} = await checkCurrentUser(req);
         
-        
         const post = await prisma.post.create({
             data:{
                 body,
@@ -23,7 +22,6 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse){
         }
         if(req.method ==="GET"){
             const {userId} =req.query;
-
             let posts;
             if(userId && typeof userId ==='string'){
                 posts = await prisma.post.findMany({
@@ -49,6 +47,7 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse){
                     }
                 });
             }
+            
             return res.status(200).json(posts);
         }
 
