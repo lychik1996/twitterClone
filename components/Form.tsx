@@ -1,7 +1,7 @@
 import useLoginModal from '@/hooks/useLoginModal';
 import usePosts from '@/hooks/usePosts';
 import useRegisterModal from '@/hooks/useRegisterModal';
-import useCurrentUser from '@/hooks/userCurrentUser';
+import useCurrentUser from '@/hooks/useCurrentUser';
 import axios from 'axios';
 import { useCallback, useState } from 'react';
 import toast from 'react-hot-toast';
@@ -20,22 +20,20 @@ export default function Form({ placeholder, isComment, postId }: FormProps) {
 
   const { data: currentUser } = useCurrentUser();
   const { mutate: mutatePosts } = usePosts();
-  const { mutate:mutatePost} = usePost(postId as string);
+  const { mutate: mutatePost } = usePost(postId as string);
   const [body, setBody] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = useCallback(async () => {
     try {
       setIsLoading(true);
-      const url = isComment
-      ?`/api/comments?postId=${postId}`
-      :'/api/posts'
+      const url = isComment ? `/api/comments?postId=${postId}` : '/api/posts';
       await axios.post(url, { body, currentUser });
 
       toast.success('Tweet created');
       setBody('');
       mutatePosts();
-      mutatePost()
+      mutatePost();
     } catch (e) {
       toast.error('Something went wrong');
     } finally {
@@ -69,13 +67,15 @@ export default function Form({ placeholder, isComment, postId }: FormProps) {
                 text-white
                 
                 "
-                placeholder={placeholder}
+              placeholder={placeholder}
             ></textarea>
-            <hr  className='opacity-0 peer-focus:opacity-100 h-[1px] w-full border-neutral-800 transition'/>
-            <div className='mt-4 flex flex-row justify-end'>
-                <Button disabled={isLoading || !body}
+            <hr className="opacity-0 peer-focus:opacity-100 h-[1px] w-full border-neutral-800 transition" />
+            <div className="mt-4 flex flex-row justify-end">
+              <Button
+                disabled={isLoading || !body}
                 onClick={onSubmit}
-                label='Tweet'/>
+                label="Tweet"
+              />
             </div>
           </div>
         </div>
