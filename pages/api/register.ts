@@ -1,8 +1,9 @@
 
 import { NextApiRequest, NextApiResponse } from "next";
 import bcrypt from 'bcrypt';
-import prisma from '@/libs/prismadb'
-
+// import prisma from '@/libs/prismadb'
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 export default async function handler(req:NextApiRequest,res:NextApiResponse) {
     if(req.method !=="POST"){
         return res.status(405).end()

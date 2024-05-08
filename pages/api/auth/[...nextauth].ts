@@ -1,12 +1,15 @@
 
 import NextAuth from 'next-auth';
 import {PrismaAdapter} from '@next-auth/prisma-adapter';
-import prisma from '@/libs/prismadb';
+// import prisma from '@/libs/prismadb';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcrypt'
+import { PrismaClient } from '@prisma/client';
 
+const prisma = new PrismaClient();
 export default NextAuth({
-    adapter: PrismaAdapter(prisma),
+    
+    adapter: PrismaAdapter( prisma),
     providers:[
         CredentialsProvider({
             name:'credentials',

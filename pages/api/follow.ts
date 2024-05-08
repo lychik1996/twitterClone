@@ -1,7 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import prisma from '@/libs/prismadb';
+// import prisma from '@/libs/prismadb';
 import checkCurrentUser from '@/libs/checkCurrentUser';
-
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
